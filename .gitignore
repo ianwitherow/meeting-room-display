@@ -16,6 +16,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+config/google/config.json
 
 # Ignore Byebug command history file.
 .byebug_history
