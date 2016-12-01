@@ -10,20 +10,7 @@ class CalendarsController < ApplicationController
 
     feed = calendar.list_events(calendar_id, order_by: "starttime", single_events: true, time_min: time_min, time_max: time_max)
 
-    hash = { location: feed.summary }
-    hash[:items] = feed.items.map do |item|
-      {
-        summary: item.summary,
-        begin: item.start.date_time,
-        end: item.end.date_time,
-        attendees: item.attendees.map do |attendee|
-          next if attendee.resource
-          attendee.display_name.presence || attendee.email
-      end.compact
-      }
-    end
-
-    render json: hash.to_json
+    render json: Calendar.new(feed)
   end
 
   private
