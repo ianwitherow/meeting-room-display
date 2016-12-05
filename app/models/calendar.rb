@@ -9,6 +9,14 @@ class Calendar
     end
   end
 
+  def available?
+    current_meeting.nil?
+  end
+
+  def in_use?
+    !available?
+  end
+
   def current_meeting
     @items.detect { |event| Time.zone.now >= event.begin_time && Time.zone.now <= event.end_time }
   end

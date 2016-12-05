@@ -17,6 +17,23 @@ describe Calendar do
     end
   end
 
+  describe "#available? and #in_use?" do
+    it "tells you if there is a meeting going on" do
+      Timecop.freeze(DateTime.new(2016, 12, 5, 9, 0)) do
+        items = create_list(:event, 1, begin_time: 4.minutes.ago, end_time: 10.minutes.from_now)
+        calendar = create(:calendar, items: items)
+        expect(calendar.available?).to be_falsey
+        expect(calendar.in_use?).to be_truthy
+      end
+    end
+
+    it "does not crash without data" do
+      calendar = create(:calendar, items: [])
+      expect(calendar.available?).to be_truthy
+      expect(calendar.in_use?).to be_falsey
+    end
+  end
+
   describe "#current_meeting" do
     it "returns the current meeting" do
       Timecop.freeze(DateTime.new(2016, 12, 5, 9, 0)) do
