@@ -15,6 +15,7 @@ gem "googleauth"
 gem "google-api-client"
 
 group :test do
+  gem "timecop"
   gem "rspec-rails", "~> 3.5"
   gem "rspec-collection_matchers"
   gem "vcr"
