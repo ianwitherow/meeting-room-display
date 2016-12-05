@@ -14,8 +14,15 @@ gem "jbuilder", "~> 2.5"
 gem "googleauth"
 gem "google-api-client"
 
-group :development, :test do
-  gem "byebug", platform: :mri
+group :test do
+  gem "timecop"
+  gem "rspec-rails", "~> 3.5"
+  gem "rspec-collection_matchers"
+  gem "vcr"
+  gem "webmock"
+  gem "capybara"
+  gem "rails-controller-testing"
+  gem "factory_girl_rails"
 end
 
 group :development do

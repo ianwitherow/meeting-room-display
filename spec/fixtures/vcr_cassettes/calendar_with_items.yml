@@ -1,0 +1,633 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.googleapis.com/oauth2/v3/token
+    body:
+      encoding: ASCII-8BIT
+      string: grant_type=refresh_token&refresh_token=1%2FYiyxDzu1kHlc6cjroqt3j4iKOZDllb31e3Gg7hXWDdI&client_id=897566473997-1u4c3v4ndded0b8qggfeuucu1gefqcui.apps.googleusercontent.com&client_secret=fckV8zU3QQuGzsS9y3SD_U7s
+    headers:
+      User-Agent:
+      - Faraday v0.10.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Mon, 01 Jan 1990 00:00:00 GMT
+      Date:
+      - Mon, 05 Dec 2016 11:42:00 GMT
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="36,35,34"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+         "access_token": "ya29.Ci-rA9IDWfqBy7JkRkW2IxNlFqtrM1ZDpb4NcMm8BfBvDtJFSPamynTUOss_7hauWA",
+         "token_type": "Bearer",
+         "expires_in": 3600
+        }
+    http_version: 
+  recorded_at: Mon, 05 Dec 2016 11:42:00 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/calendar/v3/calendars/ultimaker.com_33313636373633363835@resource.calendar.google.com/events?orderBy=starttime&singleEvents=true&timeMax=2016-12-05T23:59:59%2B01:00&timeMin=2016-12-05T00:00:00%2B01:00
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        unknown/0.0.0 google-api-ruby-client/0.9.20 Mac OS X/10.12.1
+         (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Mon, 05 Dec 2016 11:42:00 GMT
+      Authorization:
+      - Bearer ya29.Ci-rA9IDWfqBy7JkRkW2IxNlFqtrM1ZDpb4NcMm8BfBvDtJFSPamynTUOss_7hauWA
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Mon, 05 Dec 2016 11:42:00 GMT
+      Date:
+      - Mon, 05 Dec 2016 11:42:00 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Encoding:
+      - gzip
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="36,35,34"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+         "kind": "calendar#events",
+         "etag": "\"p334b3dtdujed00g\"",
+         "summary": "Flexroom North (max 8)",
+         "updated": "2016-12-05T11:05:57.453Z",
+         "timeZone": "Europe/Amsterdam",
+         "accessRole": "reader",
+         "defaultReminders": [],
+         "items": [
+          {
+           "kind": "calendar#event",
+           "etag": "\"2961858378296000\"",
+           "id": "mgo4k4lp1pdkq6ia6n6ma79i40_20161205T080000Z",
+           "status": "confirmed",
+           "htmlLink": "https://www.google.com/calendar/event?eid=bWdvNGs0bHAxcGRrcTZpYTZuNm1hNzlpNDBfMjAxNjEyMDVUMDgwMDAwWiB1bHRpbWFrZXIuY29tXzMzMzEzNjM2MzczNjMzMzYzODM1QHJlc291cmNlLmNhbGVuZGFyLmdvb2dsZS5jb20",
+           "created": "2016-07-04T08:54:41.000Z",
+           "updated": "2016-12-05T09:13:09.148Z",
+           "summary": "SMS M Meeting",
+           "location": "Flexroom North (max 8)",
+           "creator": {
+            "email": "l.wijnen@ultimaker.com",
+            "displayName": "Linsey Wijnen"
+           },
+           "organizer": {
+            "email": "s.vandenheuvel@ultimaker.com",
+            "displayName": "Simone van den Heuvel"
+           },
+           "start": {
+            "dateTime": "2016-12-05T09:00:00+01:00"
+           },
+           "end": {
+            "dateTime": "2016-12-05T11:00:00+01:00"
+           },
+           "recurringEventId": "mgo4k4lp1pdkq6ia6n6ma79i40",
+           "originalStartTime": {
+            "dateTime": "2016-12-05T09:00:00+01:00"
+           },
+           "iCalUID": "mgo4k4lp1pdkq6ia6n6ma79i40@google.com",
+           "sequence": 2,
+           "attendees": [
+            {
+             "email": "m.hoffmans@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "g.garcia@ultimaker.com",
+             "displayName": "Gerard Garcia",
+             "responseStatus": "needsAction"
+            },
+            {
+             "email": "s.vandenheuvel@ultimaker.com",
+             "displayName": "Simone van den Heuvel",
+             "organizer": true,
+             "responseStatus": "declined"
+            },
+            {
+             "email": "l.lesiputty@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "i.smeekes@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "s.tuijt@ultimaker.com",
+             "responseStatus": "declined"
+            },
+            {
+             "email": "ultimaker.com_33313636373633363835@resource.calendar.google.com",
+             "displayName": "Flexroom North (max 8)",
+             "self": true,
+             "resource": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "t.heinemans@ultimaker.com",
+             "displayName": "Tommes Heinemans",
+             "responseStatus": "accepted"
+            }
+           ],
+           "hangoutLink": "https://plus.google.com/hangouts/_/ultimaker.com/sms-m-meeting?hceid=bC53aWpuZW5AdWx0aW1ha2VyLmNvbQ.mgo4k4lp1pdkq6ia6n6ma79i40",
+           "reminders": {
+            "useDefault": true
+           }
+          },
+          {
+           "kind": "calendar#event",
+           "etag": "\"2961858337056000\"",
+           "id": "884alp1bef7cik68gh67a1tojs_20161205T093000Z",
+           "status": "confirmed",
+           "htmlLink": "https://www.google.com/calendar/event?eid=ODg0YWxwMWJlZjdjaWs2OGdoNjdhMXRvanNfMjAxNjEyMDVUMDkzMDAwWiB1bHRpbWFrZXIuY29tXzMzMzEzNjM2MzczNjMzMzYzODM1QHJlc291cmNlLmNhbGVuZGFyLmdvb2dsZS5jb20",
+           "created": "2015-11-09T11:31:59.000Z",
+           "updated": "2016-12-05T09:12:48.528Z",
+           "summary": "UL overleg",
+           "description": "Wekelijks overleg over voortgang van lopende Ultilabs projecten.",
+           "location": "Flexruimte Noord (max 8), Watermolenweg 2, 4191 PN Geldermalsen, The Netherlands",
+           "creator": {
+            "email": "m.elserman@ultimaker.com",
+            "displayName": "Martijn Elserman"
+           },
+           "organizer": {
+            "email": "m.elserman@ultimaker.com",
+            "displayName": "Martijn Elserman"
+           },
+           "start": {
+            "dateTime": "2016-12-05T10:30:00+01:00"
+           },
+           "end": {
+            "dateTime": "2016-12-05T12:00:00+01:00"
+           },
+           "recurringEventId": "884alp1bef7cik68gh67a1tojs",
+           "originalStartTime": {
+            "dateTime": "2016-12-05T10:30:00+01:00"
+           },
+           "iCalUID": "884alp1bef7cik68gh67a1tojs@google.com",
+           "sequence": 1,
+           "attendees": [
+            {
+             "email": "j.floor@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "j.versteegh@ultimaker.com",
+             "displayName": "Johan Versteegh",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "m.neut@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "m.elserman@ultimaker.com",
+             "displayName": "Martijn Elserman",
+             "organizer": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "ultimaker.com_33313636373633363835@resource.calendar.google.com",
+             "displayName": "Flexroom North (max 8)",
+             "self": true,
+             "resource": true,
+             "responseStatus": "declined"
+            },
+            {
+             "email": "e.vanderzalm@ultimaker.com",
+             "displayName": "Erik van der Zalm",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "b.groot@ultimaker.com",
+             "responseStatus": "needsAction"
+            },
+            {
+             "email": "r.huitema@ultimaker.com",
+             "responseStatus": "accepted"
+            }
+           ],
+           "hangoutLink": "https://plus.google.com/hangouts/_/ultimaker.com/ul-overleg?hceid=bS5lbHNlcm1hbkB1bHRpbWFrZXIuY29t.884alp1bef7cik68gh67a1tojs",
+           "reminders": {
+            "useDefault": true
+           }
+          },
+          {
+           "kind": "calendar#event",
+           "etag": "\"2961865491498000\"",
+           "id": "v6t9q4iu1jn0odalqq9jevcla0_20161205T100000Z",
+           "status": "confirmed",
+           "htmlLink": "https://www.google.com/calendar/event?eid=djZ0OXE0aXUxam4wb2RhbHFxOWpldmNsYTBfMjAxNjEyMDVUMTAwMDAwWiB1bHRpbWFrZXIuY29tXzMzMzEzNjM2MzczNjMzMzYzODM1QHJlc291cmNlLmNhbGVuZGFyLmdvb2dsZS5jb20",
+           "created": "2016-09-08T11:09:31.000Z",
+           "updated": "2016-12-05T10:12:25.749Z",
+           "summary": "Meeting Sales",
+           "description": "11.00 - 11.30 overview launches / education\n11.00 - 12.15 regular sales meeting\n12.15 - 12.30 support pro's / issue routing\nPlease mention it like this on the agenda",
+           "location": "Flexroom North (max 8)",
+           "creator": {
+            "email": "b.timmermans@ultimaker.com"
+           },
+           "organizer": {
+            "email": "b.timmermans@ultimaker.com"
+           },
+           "start": {
+            "dateTime": "2016-12-05T11:00:00+01:00"
+           },
+           "end": {
+            "dateTime": "2016-12-05T12:30:00+01:00"
+           },
+           "recurringEventId": "v6t9q4iu1jn0odalqq9jevcla0",
+           "originalStartTime": {
+            "dateTime": "2016-12-05T11:00:00+01:00"
+           },
+           "iCalUID": "v6t9q4iu1jn0odalqq9jevcla0@google.com",
+           "sequence": 0,
+           "attendees": [
+            {
+             "email": "s.tuijt@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "m.pors@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "p.roeffen@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "b.bolanos@ultimaker.com",
+             "displayName": "Blanca Bolaños",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "ultimaker.com_33313636373633363835@resource.calendar.google.com",
+             "displayName": "Flexroom North (max 8)",
+             "self": true,
+             "resource": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "m.goes@ultimaker.com",
+             "displayName": "Marie-Louise Goes",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "b.timmermans@ultimaker.com",
+             "organizer": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "h.rijpstra@ultimaker.com",
+             "responseStatus": "needsAction"
+            }
+           ],
+           "hangoutLink": "https://plus.google.com/hangouts/_/ultimaker.com/b-timmermans?hceid=Yi50aW1tZXJtYW5zQHVsdGltYWtlci5jb20.v6t9q4iu1jn0odalqq9jevcla0",
+           "reminders": {
+            "useDefault": true
+           }
+          },
+          {
+           "kind": "calendar#event",
+           "etag": "\"2961388208446000\"",
+           "id": "dbkf9udd95f9e61t4ft6m57a8g",
+           "status": "confirmed",
+           "htmlLink": "https://www.google.com/calendar/event?eid=ZGJrZjl1ZGQ5NWY5ZTYxdDRmdDZtNTdhOGcgdWx0aW1ha2VyLmNvbV8zMzMxMzYzNjM3MzYzMzM2MzgzNUByZXNvdXJjZS5jYWxlbmRhci5nb29nbGUuY29t",
+           "created": "2016-11-07T10:55:36.000Z",
+           "updated": "2016-12-02T15:55:04.223Z",
+           "summary": "Afspraak Joost Visser",
+           "description": "stage",
+           "location": "Flexroom North (max 8)",
+           "creator": {
+            "email": "b.timmermans@ultimaker.com"
+           },
+           "organizer": {
+            "email": "b.timmermans@ultimaker.com"
+           },
+           "start": {
+            "dateTime": "2016-12-05T12:30:00+01:00"
+           },
+           "end": {
+            "dateTime": "2016-12-05T13:30:00+01:00"
+           },
+           "iCalUID": "dbkf9udd95f9e61t4ft6m57a8g@google.com",
+           "sequence": 0,
+           "attendees": [
+            {
+             "email": "t.heinemans@ultimaker.com",
+             "displayName": "Tommes Heinemans",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "p.roeffen@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "ultimaker.com_33313636373633363835@resource.calendar.google.com",
+             "displayName": "Flexroom North (max 8)",
+             "self": true,
+             "resource": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "b.timmermans@ultimaker.com",
+             "organizer": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "s.tuijt@ultimaker.com",
+             "responseStatus": "accepted"
+            }
+           ],
+           "reminders": {
+            "useDefault": true
+           }
+          },
+          {
+           "kind": "calendar#event",
+           "etag": "\"2961533658484000\"",
+           "id": "usbs833p7lsgi5luoc98bt5k1k",
+           "status": "confirmed",
+           "htmlLink": "https://www.google.com/calendar/event?eid=dXNiczgzM3A3bHNnaTVsdW9jOThidDVrMWsgdWx0aW1ha2VyLmNvbV8zMzMxMzYzNjM3MzYzMzM2MzgzNUByZXNvdXJjZS5jYWxlbmRhci5nb29nbGUuY29t",
+           "created": "2016-12-02T17:22:58.000Z",
+           "updated": "2016-12-03T12:07:09.242Z",
+           "summary": "reactie op community feedback",
+           "location": "Flexroom North (max 8)",
+           "creator": {
+            "email": "t.nagel@ultimaker.com"
+           },
+           "organizer": {
+            "email": "t.nagel@ultimaker.com"
+           },
+           "start": {
+            "dateTime": "2016-12-05T13:30:00+01:00"
+           },
+           "end": {
+            "dateTime": "2016-12-05T14:00:00+01:00"
+           },
+           "iCalUID": "usbs833p7lsgi5luoc98bt5k1k@google.com",
+           "sequence": 0,
+           "attendees": [
+            {
+             "email": "s.vangeelen@ultimaker.com",
+             "displayName": "Sander van Geelen",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "b.vandeursen@ultimaker.com",
+             "displayName": "Bas van Deursen",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "ultimaker.com_33313636373633363835@resource.calendar.google.com",
+             "displayName": "Flexroom North (max 8)",
+             "self": true,
+             "resource": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "t.nagel@ultimaker.com",
+             "organizer": true,
+             "responseStatus": "accepted"
+            }
+           ],
+           "reminders": {
+            "useDefault": true
+           }
+          },
+          {
+           "kind": "calendar#event",
+           "etag": "\"2960657159058000\"",
+           "id": "qd04a398a9onp7k805bo8o6v08_20161205T130000Z",
+           "status": "confirmed",
+           "htmlLink": "https://www.google.com/calendar/event?eid=cWQwNGEzOThhOW9ucDdrODA1Ym84bzZ2MDhfMjAxNjEyMDVUMTMwMDAwWiB1bHRpbWFrZXIuY29tXzMzMzEzNjM2MzczNjMzMzYzODM1QHJlc291cmNlLmNhbGVuZGFyLmdvb2dsZS5jb20",
+           "created": "2016-11-18T15:33:06.000Z",
+           "updated": "2016-11-28T10:22:59.529Z",
+           "summary": "Marketing meeting Internal ",
+           "location": "Flexroom North (max 8)",
+           "creator": {
+            "email": "i.smeekes@ultimaker.com"
+           },
+           "organizer": {
+            "email": "i.smeekes@ultimaker.com"
+           },
+           "start": {
+            "dateTime": "2016-12-05T14:00:00+01:00"
+           },
+           "end": {
+            "dateTime": "2016-12-05T15:00:00+01:00"
+           },
+           "recurringEventId": "qd04a398a9onp7k805bo8o6v08",
+           "originalStartTime": {
+            "dateTime": "2016-12-05T14:00:00+01:00"
+           },
+           "iCalUID": "qd04a398a9onp7k805bo8o6v08@google.com",
+           "sequence": 0,
+           "attendees": [
+            {
+             "email": "g.sie@ultimaker.com",
+             "displayName": "Guy Sie",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "m.vandenburg@ultimaker.com",
+             "displayName": "Marcella van den Burg",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "m.dedeugd@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "i.smeekes@ultimaker.com",
+             "organizer": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "y.remmig@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "s.vangeelen@ultimaker.com",
+             "displayName": "Sander van Geelen",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "b.bolanos@ultimaker.com",
+             "displayName": "Blanca Bolaños",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "t.heinemans@ultimaker.com",
+             "displayName": "Tommes Heinemans",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "c.devries@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "s.lozova@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "ultimaker.com_33313636373633363835@resource.calendar.google.com",
+             "displayName": "Flexroom North (max 8)",
+             "self": true,
+             "resource": true,
+             "responseStatus": "accepted"
+            }
+           ],
+           "hangoutLink": "https://plus.google.com/hangouts/_/ultimaker.com/marketing?hceid=aS5zbWVla2VzQHVsdGltYWtlci5jb20.qd04a398a9onp7k805bo8o6v08",
+           "guestsCanInviteOthers": false,
+           "reminders": {
+            "useDefault": true
+           }
+          },
+          {
+           "kind": "calendar#event",
+           "etag": "\"2961398629862000\"",
+           "id": "sal2k7bjjqpf7n10mao4nc2jhc_20161205T150000Z",
+           "status": "confirmed",
+           "htmlLink": "https://www.google.com/calendar/event?eid=c2FsMms3YmpqcXBmN24xMG1hbzRuYzJqaGNfMjAxNjEyMDVUMTUwMDAwWiB1bHRpbWFrZXIuY29tXzMzMzEzNjM2MzczNjMzMzYzODM1QHJlc291cmNlLmNhbGVuZGFyLmdvb2dsZS5jb20",
+           "created": "2016-11-07T06:17:16.000Z",
+           "updated": "2016-12-02T17:21:54.931Z",
+           "summary": "Meeting Specialisten, PM + FBRC8",
+           "location": "Flexroom North (max 8)",
+           "creator": {
+            "email": "s.vandenheuvel@ultimaker.com",
+            "displayName": "Simone van den Heuvel"
+           },
+           "organizer": {
+            "email": "s.vandenheuvel@ultimaker.com",
+            "displayName": "Simone van den Heuvel"
+           },
+           "start": {
+            "dateTime": "2016-12-05T16:00:00+01:00"
+           },
+           "end": {
+            "dateTime": "2016-12-05T17:00:00+01:00"
+           },
+           "recurringEventId": "sal2k7bjjqpf7n10mao4nc2jhc_R20161128T150000",
+           "originalStartTime": {
+            "dateTime": "2016-12-05T16:00:00+01:00"
+           },
+           "iCalUID": "sal2k7bjjqpf7n10mao4nc2jhc_R20161128T150000@google.com",
+           "sequence": 1,
+           "attendees": [
+            {
+             "email": "p.ho@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "j.vandamme@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "t.nagel@ultimaker.com",
+             "responseStatus": "declined"
+            },
+            {
+             "email": "s.tuijt@ultimaker.com",
+             "responseStatus": "declined"
+            },
+            {
+             "email": "p.heiden@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "erin@fbrc8.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "c.mcadam@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "s.vandenheuvel@ultimaker.com",
+             "displayName": "Simone van den Heuvel",
+             "organizer": true,
+             "responseStatus": "declined"
+            },
+            {
+             "email": "j.stevens@ultimaker.com",
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "ultimaker.com_33313636373633363835@resource.calendar.google.com",
+             "displayName": "Flexroom North (max 8)",
+             "self": true,
+             "resource": true,
+             "responseStatus": "accepted"
+            },
+            {
+             "email": "m.hoffmans@ultimaker.com",
+             "responseStatus": "declined"
+            }
+           ],
+           "hangoutLink": "https://plus.google.com/hangouts/_/ultimaker.com/s-vandenheuvel?hceid=cy52YW5kZW5oZXV2ZWxAdWx0aW1ha2VyLmNvbQ.sal2k7bjjqpf7n10mao4nc2jhc",
+           "reminders": {
+            "useDefault": true
+           }
+          }
+         ]
+        }
+    http_version: 
+  recorded_at: Mon, 05 Dec 2016 11:42:00 GMT
+recorded_with: VCR 3.0.3
