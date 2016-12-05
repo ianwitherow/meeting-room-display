@@ -21,6 +21,7 @@ group :test do
   gem "webmock"
   gem "capybara"
   gem "rails-controller-testing"
+  gem "factory_girl_rails"
 end
 
 group :development do
