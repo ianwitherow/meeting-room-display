@@ -1,0 +1,40 @@
+.mod-status
+  padding: 20px
+  min-height: 100vh
+
+  .description
+    padding-right: 50px
+
+  .time-left
+    text-align: center
+    font-size: 30px
+
+  p,
+  h1
+    margin-bottom: 10px
+
+  $circle-size: 250px
+
+  .circle
+    width: $circle-size
+    margin: 70px auto 20px
+
+  .clock
+    margin: 10px auto
+    display: table-cell
+    width: $circle-size
+    height: $circle-size
+    border: 3px solid white
+    border-radius: 50%
+    vertical-align: middle
+    text-align: center
+    font-size: 40px
+
+  .in_use &
+    background-color: red
+    color: white
+    background-image: radial-gradient(50% 50%, #FF9F00 50%, $orange 100%)
+
+  .available &
+    color: white
+    background-image: radial-gradient(50% 50%, #BBEE46 50%, $green 100%)

@@ -3,7 +3,7 @@ class OauthController < ApplicationController
     @google_auth = GoogleCalendar.new(request: request)
 
     if @google_auth.authorized?
-      redirect_to calendar_path
+      redirect_to calendars_path
     else
       redirect_to @google_auth.authorization_url(callback: callback_url)
     end
@@ -12,6 +12,6 @@ class OauthController < ApplicationController
   def callback
     @google_auth = GoogleCalendar.new(request: request)
     @google_auth.handle_auth_callback!
-    redirect_to calendar_path
+    redirect_to calendars_path
   end
 end

@@ -1,10 +1,11 @@
 class CalendarsController < ApplicationController
+  def index
+    google_auth = GoogleCalendar.new(request: request)
+    @calendars = google_auth.calendars
+  end
+
   def show
-    begin
-      google_auth = GoogleCalendar.new(request: request)
-      @calendar = google_auth.calendar_for_today
-    rescue Google::Apis::ClientError
-      redirect_to authorize_path
-    end
+    google_auth = GoogleCalendar.new(request: request, calendar_id: params[:id])
+    @calendar = google_auth.calendar_for_today
   end
 end

@@ -1,12 +1,21 @@
-require "google/apis/calendar_v3"
-
 class GoogleCalendar
+  USER_ID = "default".freeze
+  SCOPE = "https://www.googleapis.com/auth/calendar".freeze
+
   attr_reader :calendar
 
-  def initialize(request:)
+  def initialize(request:, calendar_id: nil)
     @request = request
+    @calendar_id = calendar_id
     @calendar = Google::Apis::CalendarV3::CalendarService.new
     @calendar.authorization = credentials
+  end
+
+  def calendars
+    @calendar.list_calendar_lists.items.map do |item|
+      next unless item.id.ends_with?("resource.calendar.google.com")
+      Calendar.new(item)
+    end.compact.sort_by { |calendar| calendar.location }
   end
 
   def calendar_for_today
@@ -14,7 +23,7 @@ class GoogleCalendar
     time_max = DateTime.now.end_of_day.rfc3339
 
     events = @calendar.list_events(
-        calendar_id,
+        @calendar_id,
         order_by: "starttime",
         single_events: true,
         time_min: time_min,
@@ -23,29 +32,21 @@ class GoogleCalendar
   end
 
   def handle_auth_callback!
-    authorizer.handle_auth_callback(user_id, @request)
+    authorizer.handle_auth_callback(USER_ID, @request)
   end
 
   def authorized?
     @credentials.present?
   end
 
-  def authorization_url(callback: )
+  def authorization_url(callback:)
     authorizer.get_authorization_url(request: @request, redirect_to: callback)
   end
 
   private
 
   def credentials
-    @credentials ||= authorizer.get_credentials(user_id, @request)
-  end
-
-  def user_id
-    "default"
-  end
-
-  def scope
-    "https://www.googleapis.com/auth/calendar"
+    @credentials ||= authorizer.get_credentials(USER_ID, @request)
   end
 
   def token_store
@@ -65,10 +66,6 @@ class GoogleCalendar
   end
 
   def authorizer
-    Google::Auth::WebUserAuthorizer.new(client_id, scope, token_store, "/oauth/callback")
-  end
-
-  def calendar_id
-    "ultimaker.com_33313636373633363835@resource.calendar.google.com"
+    Google::Auth::WebUserAuthorizer.new(client_id, SCOPE, token_store, "/oauth/callback")
   end
 end

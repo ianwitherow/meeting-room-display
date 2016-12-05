@@ -11,6 +11,14 @@ FactoryGirl.define do
                  "Blanca Bolaños"] }
 
     skip_create
-    initialize_with { Event.new(nil) }
+    initialize_with { Event.new(nil, nil) }
+
+    trait :all_day do
+      all_day true
+    end
+
+    trait :rejected do
+      rejected true
+    end
   end
 end
