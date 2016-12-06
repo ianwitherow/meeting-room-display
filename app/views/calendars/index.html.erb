@@ -1,0 +1,7 @@
+<ul class="mod-calendars">
+  <% @calendars.each do |calendar| %>
+    <li class="calendar">
+      <%= link_to calendar.location, calendar_path(calendar.calendar_id) %>
+    </li>
+  <% end %>
+</ul>

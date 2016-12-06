@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     get "callback", to: "oauth#callback"
   end
 
-  resource "calendar"
+  resources :calendars, constraints: { id: /[0-z\.]+/ }
 
-  root to: "calendars#show"
+  root to: "calendars#index"
 end

@@ -1,0 +1,5 @@
+<div class="<%= event_classes(event) %>" style="<%= event_styles(event, previous_event) %>">
+  <%= l(event.begin_time, format: :time_only) %> -
+  <%= l(event.end_time, format: :time_only) %> |
+  <%= event.summary %>
+</div>
