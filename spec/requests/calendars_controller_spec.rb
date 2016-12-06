@@ -1,9 +1,13 @@
 require "rails_helper"
 
-describe CalendarsController do
+describe CalendarsController, type: :request do
   it "loads and parses the feed from Google Calendar" do
+    env = {
+      "HTTP_AUTHORIZATION" => ActionController::HttpAuthentication::Basic.encode_credentials("ultimaker", "ultimaker2011")
+    }
+
     VCR.use_cassette("calendar_with_items") do
-      get calendar_path("ultimaker.com_33313636373633363835@resource.calendar.google.com")
+      get calendar_path("ultimaker.com_33313636373633363835@resource.calendar.google.com"), {}, env
 
       calendar = assigns(:calendar)
       expect(calendar.location).to eq "Flexroom North (max 8)"
