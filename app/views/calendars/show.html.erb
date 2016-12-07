@@ -8,6 +8,19 @@
       </div>
     </div>
     <div class="time-left"><%= @calendar.time_left %></div>
+    <% if @other_available_calenders.present? %>
+        <% if @calendar.in_use? %>
+            <p>These rooms are available right now:</p>
+            <ul>
+              <% @other_available_calenders.each do |c| %>
+                  <% available_for = c.next_event.blank? ? "until the end of the day" : c.time_left(suffix: "")%>
+                <li><%= "#{c.location} #{available_for}" %></li>
+              <% end %>
+            </ul>
+        <% else %>
+            <p>No other room is available right now.</p>
+        <% end %>
+    <% end %>
   </div>
 
   <div class="mod-calendar">

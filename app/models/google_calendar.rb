@@ -7,13 +7,17 @@ class GoogleCalendar
   def initialize(request:)
     @request = request
     @calendar_service = Google::Apis::CalendarV3::CalendarService.new
-    @calendar_service.authorization = credentials
+    @calendar_service.authorization = credentials if request.present?
+  end
+
+  def available_calendars
+    calendars.find_all { |calendar| calendar.available? }
   end
 
   def calendars
     @calendar_service.list_calendar_lists.items.map do |item|
       next unless item.id.ends_with?("resource.calendar.google.com")
-      Calendar.new(item)
+      calendar_for_today(item.id)
     end.compact.sort_by { |calendar| calendar.location }
   end
 
@@ -22,18 +26,8 @@ class GoogleCalendar
   end
 
   def calendar_for_today(calendar_id)
-    time_min = DateTime.now.beginning_of_day.rfc3339
-    time_max = DateTime.now.end_of_day.rfc3339
-
-    events_data = @calendar_service.list_events(
-      calendar_id,
-      order_by: "starttime",
-      single_events: true,
-      time_min: time_min,
-      time_max: time_max)
-
     calendar_data = calendar(calendar_id)
-    Calendar.new(calendar_data, events_data)
+    Calendar.new(calendar_data, @calendar_service)
   end
 
   def handle_auth_callback!
