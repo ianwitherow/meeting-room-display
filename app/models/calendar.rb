@@ -4,11 +4,12 @@ class Calendar
   attr_accessor :events
   attr_accessor :location
 
-  def initialize(json = nil)
-    if json.present?
-      @location = json.summary
-      @calendar_id = json.try(:id)
-      @events = json.items.map { |item| Event.new(self, item) } if json.respond_to?(:items)
+  def initialize(calendar_data, events_data = nil)
+    @location = calendar_data.try(:summary)
+    @calendar_id = calendar_data.try(:id)
+
+    if events_data.present?
+      @events = events_data.items.map { |item| Event.new(self, item) }
     end
   end
 
