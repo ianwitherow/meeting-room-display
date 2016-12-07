@@ -21,12 +21,15 @@ class Event
 
   def as_json
     {
-      summary: summary,
-      begin_time: begin_time,
-      end_time: end_time,
-      attendees: attendees,
-      rejected: rejected,
-      all_day: all_day
+      key: self.object_id,
+      begin_time: I18n.l(begin_time, format: :time_only),
+      duration: duration,
+      end_time: I18n.l(end_time, format: :time_only),
+      is_overlapping: overlapping?,
+      is_rejected: rejected,
+      is_consecutive: consecutive?,
+      seconds_after_midnight: seconds_after_midnight,
+      summary: summary
     }
   end
 
@@ -38,6 +41,10 @@ class Event
     end_time.to_i - begin_time.to_i
   end
 
+  def seconds_after_midnight
+    begin_time.seconds_since_midnight
+  end
+
   def overlapping?
     calendar.events.any? do |event|
       next if event == self
@@ -45,6 +52,13 @@ class Event
       (event.begin_time <= begin_time && event.end_time > begin_time) ||
         (event.begin_time < end_time && event.end_time >= end_time)
     end
+  end
+
+  def consecutive?
+    calendar.events
+            .reject { |event| event == self || event.rejected }
+            .sort_by(&:begin_time)
+            .any? { |event| begin_time == event.end_time }
   end
 
   private

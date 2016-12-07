@@ -7,7 +7,7 @@ describe Event do
     end
   end
 
-  describe "#overlapping" do
+  describe "#overlapping?" do
     it "is true when the event overlaps another" do
       event_1 = create(:event, begin_time: 3.hours.ago, end_time: 1.hour.ago)
       event_2 = create(:event, begin_time: 2.hours.ago, end_time: Time.zone.now)
@@ -32,6 +32,47 @@ describe Event do
 
       expect(event_1).not_to be_overlapping
       expect(event_2).not_to be_overlapping
+    end
+  end
+
+  describe "#consecutive?" do
+    it "is true when the event comes right after a previous one" do
+      event_1 = create(:event, begin_time: 2.hours.ago, end_time: 1.hour.ago)
+      event_2 = create(:event, begin_time: 1.hour.ago, end_time: 15.minutes.ago)
+
+      calendar = create(:calendar, events: [event_1, event_2])
+
+      event_1.calendar = calendar
+      event_2.calendar = calendar
+
+      expect(event_1).not_to be_consecutive
+      expect(event_2).to be_consecutive
+    end
+
+    it "is false when the event doesn't come right after a previous one" do
+      event_1 = create(:event, begin_time: 3.hours.ago, end_time: 2.hour.ago)
+      event_2 = create(:event, begin_time: 1.hours.ago, end_time: 15.minutes.ago)
+
+      calendar = create(:calendar, events: [event_1, event_2])
+
+      event_1.calendar = calendar
+      event_2.calendar = calendar
+
+      expect(event_1).not_to be_consecutive
+      expect(event_2).not_to be_consecutive
+    end
+
+    it "is false if the previous event is a rejected event" do
+      event_1 = create(:event, :rejected, begin_time: 2.hours.ago, end_time: 1.hour.ago)
+      event_2 = create(:event, begin_time: 1.hours.ago, end_time: 15.minutes.ago)
+
+      calendar = create(:calendar, events: [event_1, event_2])
+
+      event_1.calendar = calendar
+      event_2.calendar = calendar
+
+      expect(event_1).not_to be_consecutive
+      expect(event_2).not_to be_consecutive
     end
   end
 end

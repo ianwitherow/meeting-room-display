@@ -16,6 +16,7 @@ gem "timecop"
 gem "bourbon"
 gem "redis"
 gem "react-rails"
+gem "axios_rails"
 
 group :test do
   gem "rspec-rails", "~> 3.5"

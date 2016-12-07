@@ -30,10 +30,7 @@
         <div class="time time-<%= hour %>"><%= hour %>:00</div>
     <% end %>
 
-    <% @calendar.events.inject(nil) do |previous_event, event| %>
-      <%= render partial: "events/event", locals: { event: event, previous_event: previous_event } %>
-      <% event %>
-    <% end %>
+    <%= react_component("Calendar", { calendarId: @calendar.calendar_id }) %>
 
     <span class="now" style="top: <%= seconds_to_px(Time.zone.now.seconds_since_midnight) %>px;">
       <span class="label"><%= l(Time.zone.now, format: :time_only) %></span>
