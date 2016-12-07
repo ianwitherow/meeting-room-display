@@ -21,6 +21,9 @@
 
 
 en:
+  support:
+    array:
+      last_word_connector: " and "
   time:
     formats:
       time_only: "%H:%M"

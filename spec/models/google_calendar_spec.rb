@@ -19,10 +19,14 @@ describe GoogleCalendar do
                                                                                available_calendar_3,
                                                                                available_calendar_4])
 
-      expect(GoogleCalendar.new(request: nil).available_calendars).to match_array [available_calendar_1,
-                                                                                   available_calendar_2,
-                                                                                   available_calendar_3,
-                                                                                   available_calendar_4]
+      available_calendars = GoogleCalendar.new(request: nil).available_calendars
+
+      expect(available_calendars).to match_array [available_calendar_1,
+                                                  available_calendar_2,
+                                                  available_calendar_3,
+                                                  available_calendar_4]
+
+      expect(available_calendars.first).to have(1).event
     end
   end
 
