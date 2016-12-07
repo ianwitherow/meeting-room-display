@@ -17,7 +17,7 @@ class GoogleCalendar
   def calendars
     @calendar_service.list_calendar_lists.items.map do |item|
       next unless item.id.ends_with?("resource.calendar.google.com")
-      Calendar.new(item)
+      calendar_for_today(item.id)
     end.compact.sort_by { |calendar| calendar.location }
   end
 

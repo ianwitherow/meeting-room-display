@@ -10,6 +10,8 @@ class Calendar
 
     if events_data.present?
       @events = events_data.items.map { |item| Event.new(self, item) }
+    else
+      @events = []
     end
   end
 
@@ -21,7 +23,7 @@ class Calendar
 
   def description
     if in_use?
-      attendees = current_event.attendees.to_sentence(last_word_connector: " and ")
+      attendees = current_event.attendees.to_sentence
 
       "This room is used by #{attendees} " \
         "until #{current_event.end_time.strftime("%H:%M")} " \
