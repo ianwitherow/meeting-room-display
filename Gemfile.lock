@@ -165,6 +165,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redis (3.3.2)
     representable (2.3.0)
       uber (~> 0.0.7)
     retriable (2.1.0)
@@ -200,11 +201,6 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
-    spring (2.0.0)
-      activesupport (>= 4.2)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -256,11 +252,10 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing
+  redis
   rspec-collection_matchers
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
-  spring
-  spring-watcher-listen (~> 2.0.0)
   timecop
   turbolinks (~> 5)
   tzinfo-data

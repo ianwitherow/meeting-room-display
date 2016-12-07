@@ -50,7 +50,7 @@ class GoogleCalendar
   end
 
   def token_store
-    Google::Auth::Stores::FileTokenStore.new(file: config_store_file)
+    Google::Auth::Stores::RedisTokenStore.new(redis: $redis)
   end
 
   def config_store_file
