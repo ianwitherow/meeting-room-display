@@ -19,6 +19,17 @@ class Event
     end
   end
 
+  def as_json
+    {
+      summary: summary,
+      begin_time: begin_time,
+      end_time: end_time,
+      attendees: attendees,
+      rejected: rejected,
+      all_day: all_day
+    }
+  end
+
   def all_day?
     @all_day
   end

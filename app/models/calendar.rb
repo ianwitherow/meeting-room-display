@@ -13,6 +13,12 @@ class Calendar
     end
   end
 
+  def as_json
+    calendar_json = { name: location, calendar_id: calendar_id }
+    calendar_json[:events] = events.map(&:as_json) if events.present?
+    calendar_json
+  end
+
   def description
     if in_use?
       attendees = current_meeting.attendees.to_sentence(last_word_connector: " and ")
