@@ -15,6 +15,7 @@ gem "google-api-client"
 gem "timecop"
 gem "bourbon"
 gem "redis"
+gem "react-rails"
 
 group :test do
   gem "rspec-rails", "~> 3.5"
