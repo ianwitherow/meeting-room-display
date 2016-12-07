@@ -13,7 +13,8 @@
             <p>These rooms are available right now:</p>
             <ul>
               <% @other_available_calenders.each do |c| %>
-                <li><%= "#{c.location} for #{c.time_left(suffix: "")}" %></li>
+                  <% available_for = c.next_event.blank? ? "until the end of the day" : c.time_left(suffix: "")%>
+                <li><%= "#{c.location} #{available_for}" %></li>
               <% end %>
             </ul>
         <% else %>
