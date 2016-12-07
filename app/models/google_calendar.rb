@@ -7,7 +7,11 @@ class GoogleCalendar
   def initialize(request:)
     @request = request
     @calendar_service = Google::Apis::CalendarV3::CalendarService.new
-    @calendar_service.authorization = credentials
+    @calendar_service.authorization = credentials if request.present?
+  end
+
+  def available_calendars
+    calendars.find_all { |calendar| calendar.available? }
   end
 
   def calendars
