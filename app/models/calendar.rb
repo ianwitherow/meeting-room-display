@@ -33,16 +33,16 @@ class Calendar
     end
   end
 
-  def time_left
+  def time_left(suffix: " left")
     if in_use?
       if current_event.all_day?
         "this meeting takes all day"
       else
-        distance_of_time_in_words(Time.zone.now, current_event.end_time) + " left"
+        distance_of_time_in_words(Time.zone.now, current_event.end_time) + suffix
       end
     else
       if next_event.present?
-        distance_of_time_in_words(Time.zone.now, next_event.begin_time) + " left"
+        distance_of_time_in_words(Time.zone.now, next_event.begin_time) + suffix
       else
         ""
       end
