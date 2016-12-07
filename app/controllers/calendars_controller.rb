@@ -5,7 +5,7 @@ class CalendarsController < ApplicationController
   end
 
   def show
-    google_auth = GoogleCalendar.new(request: request, calendar_id: params[:id])
-    @calendar = google_auth.calendar_for_today
+    google_auth = GoogleCalendar.new(request: request)
+    @calendar = google_auth.calendar_for_today(params[:id])
   end
 end

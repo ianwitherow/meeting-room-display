@@ -4,31 +4,36 @@ class GoogleCalendar
 
   attr_reader :calendar
 
-  def initialize(request:, calendar_id: nil)
+  def initialize(request:)
     @request = request
-    @calendar_id = calendar_id
-    @calendar = Google::Apis::CalendarV3::CalendarService.new
-    @calendar.authorization = credentials
+    @calendar_service = Google::Apis::CalendarV3::CalendarService.new
+    @calendar_service.authorization = credentials
   end
 
   def calendars
-    @calendar.list_calendar_lists.items.map do |item|
+    @calendar_service.list_calendar_lists.items.map do |item|
       next unless item.id.ends_with?("resource.calendar.google.com")
       Calendar.new(item)
     end.compact.sort_by { |calendar| calendar.location }
   end
 
-  def calendar_for_today
+  def calendar(calendar_id)
+    @calendar_service.get_calendar_list(calendar_id)
+  end
+
+  def calendar_for_today(calendar_id)
     time_min = DateTime.now.beginning_of_day.rfc3339
     time_max = DateTime.now.end_of_day.rfc3339
 
-    events = @calendar.list_events(
-        @calendar_id,
-        order_by: "starttime",
-        single_events: true,
-        time_min: time_min,
-        time_max: time_max)
-    Calendar.new(events)
+    events_data = @calendar_service.list_events(
+      calendar_id,
+      order_by: "starttime",
+      single_events: true,
+      time_min: time_min,
+      time_max: time_max)
+
+    calendar_data = calendar(calendar_id)
+    Calendar.new(calendar_data, events_data)
   end
 
   def handle_auth_callback!
