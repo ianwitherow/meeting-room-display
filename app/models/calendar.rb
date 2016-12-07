@@ -1,27 +1,34 @@
 class Calendar
   include ActionView::Helpers::DateHelper
   attr_accessor :calendar_id
-  attr_accessor :events
   attr_accessor :location
+  attr_accessor :google_events
+  attr_writer :events
 
-  def initialize(calendar_data, events_data = nil)
+  def initialize(calendar_data, calendar_service = nil)
     @location = calendar_data.try(:summary)
     @calendar_id = calendar_data.try(:id)
+    @calendar_service = calendar_service
+  end
 
-    if events_data.present?
-      @events = events_data.items.map { |item| Event.new(self, item) }
-    end
+  def events
+    @events ||= @calendar_service.list_events(
+        @calendar_id,
+        order_by: "starttime",
+        single_events: true,
+        time_min: DateTime.now.beginning_of_day.rfc3339,
+        time_max: DateTime.now.end_of_day.rfc3339).items.map { |item| Event.new(self, item) }
   end
 
   def as_json
-    calendar_json = { name: location, calendar_id: calendar_id }
+    calendar_json = {name: location, calendar_id: calendar_id}
     calendar_json[:events] = events.map(&:as_json) if events.present?
     calendar_json
   end
 
   def description
     if in_use?
-      attendees = current_event.attendees.to_sentence(last_word_connector: " and ")
+      attendees = current_event.attendees.to_sentence
 
       "This room is used by #{attendees} " \
         "until #{current_event.end_time.strftime("%H:%M")} " \
@@ -31,16 +38,16 @@ class Calendar
     end
   end
 
-  def time_left
+  def time_left(suffix: " left")
     if in_use?
       if current_event.all_day?
         "this meeting takes all day"
       else
-        distance_of_time_in_words(Time.zone.now, current_event.end_time) + " left"
+        distance_of_time_in_words(Time.zone.now, current_event.end_time) + suffix
       end
     else
       if next_event.present?
-        distance_of_time_in_words(Time.zone.now, next_event.begin_time) + " left"
+        distance_of_time_in_words(Time.zone.now, next_event.begin_time) + suffix
       else
         ""
       end
@@ -48,10 +55,10 @@ class Calendar
   end
 
   def next_event
-    @events
-      .reject(&:rejected)
-      .sort_by(&:begin_time)
-      .detect { |event| event.begin_time > Time.zone.now }
+    events
+        .reject(&:rejected)
+        .sort_by(&:begin_time)
+        .detect { |event| event.begin_time > Time.zone.now }
   end
 
   def available?
@@ -63,11 +70,11 @@ class Calendar
   end
 
   def current_event
-    @events.detect do |event|
+    events.detect do |event|
       next if event.rejected
 
       event.all_day? ||
-        Time.zone.now >= event.begin_time && Time.zone.now <= event.end_time
+          Time.zone.now >= event.begin_time && Time.zone.now <= event.end_time
     end
   end
 end
