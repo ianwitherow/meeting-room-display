@@ -20,25 +20,27 @@ describe Calendar do
   end
 
   describe "#time_left" do
-    it "returns the time left for current meeting" do
+    it "returns the time left for current event" do
       Timecop.freeze(DateTime.new(2016, 12, 5, 9, 0, 0, "+1")) do
-        events = []
-        events << create(:event, begin_time: 1.hour.ago, end_time: 5.minutes.ago, summary: "Stand up")
-        events << create(:event, begin_time: 4.minutes.ago, end_time: 10.minutes.from_now, summary: "Planning")
-        calendar = create(:calendar, events: events)
+        calendar = create(:calendar)
+        event = create(:event, begin_time: 4.minutes.ago, end_time: 10.minutes.from_now)
+
+        expect(calendar).to receive(:in_use?).and_return(true)
+        expect(calendar).to receive(:current_event).and_return(event).twice
 
         expect(calendar.time_left).to eq "10 minutes left"
       end
     end
 
-    it "returns the time left until the next meeting starts" do
+    it "returns the time left until the next event starts" do
       Timecop.freeze(DateTime.new(2016, 12, 5, 9, 0, 0, "+1")) do
-        events = []
-        events << create(:event, begin_time: 1.hour.ago, end_time: 5.minutes.ago)
-        events << create(:event, begin_time: 3.minutes.from_now, end_time: 10.minutes.from_now)
-        calendar = create(:calendar, events: events)
+        calendar = create(:calendar)
+        event = create(:event, begin_time: 10.minutes.from_now, end_time: 15.minutes.from_now)
 
-        expect(calendar.time_left).to eq "3 minutes left"
+        expect(calendar).to receive(:in_use?).and_return(false)
+        expect(calendar).to receive(:next_event).and_return(event).twice
+
+        expect(calendar.time_left).to eq "10 minutes left"
       end
     end
 
@@ -51,6 +53,29 @@ describe Calendar do
       event = create(:event, :all_day)
       calendar = create(:calendar, events: [event])
       expect(calendar.time_left).to eq "this meeting takes all day"
+    end
+  end
+
+  describe "#next_event" do
+    it "doesn't return rejected events" do
+      event = create(:event, :rejected, begin_time: 10.minutes.from_now, end_time: 15.minutes.from_now)
+      calendar = create(:calendar, events: [event])
+
+      expect(calendar.next_event).to be_nil
+    end
+
+    it "doesn't return the current event" do
+      event = create(:event, begin_time: 10.minutes.ago, end_time: 15.minutes.from_now)
+      calendar = create(:calendar, events: [event])
+
+      expect(calendar.next_event).to be_nil
+    end
+
+    it "returns the first upcoming event" do
+      event = create(:event, begin_time: 10.minutes.from_now, end_time: 15.minutes.from_now)
+      calendar = create(:calendar, events: [event])
+
+      expect(calendar.next_event).to eq(event)
     end
   end
 
@@ -71,14 +96,14 @@ describe Calendar do
     end
   end
 
-  describe "#current_meeting" do
+  describe "#current_event" do
     it "returns an all-day meeting" do
       Timecop.freeze(DateTime.new(2016, 12, 5, 9, 0)) do
         event = create(:event, :all_day, summary: "Meeting day")
         calendar = create(:calendar, events: [event])
 
-        expect(calendar.current_meeting).to be_a Event
-        expect(calendar.current_meeting.summary).to eq "Meeting day"
+        expect(calendar.current_event).to be_a Event
+        expect(calendar.current_event.summary).to eq "Meeting day"
       end
     end
 
@@ -89,8 +114,8 @@ describe Calendar do
         events << create(:event, begin_time: 4.minutes.ago, end_time: 10.minutes.from_now, summary: "Planning")
         calendar = create(:calendar, events: events)
 
-        expect(calendar.current_meeting).to be_a Event
-        expect(calendar.current_meeting.summary).to eq "Planning"
+        expect(calendar.current_event).to be_a Event
+        expect(calendar.current_event.summary).to eq "Planning"
       end
     end
 
@@ -99,13 +124,13 @@ describe Calendar do
         event = create(:event, :rejected, begin_time: 4.minutes.ago, end_time: 10.minutes.from_now)
         calendar = create(:calendar, events: [event])
 
-        expect(calendar.current_meeting).to be_nil
+        expect(calendar.current_event).to be_nil
       end
     end
 
     it "does not crash without data" do
       calendar = create(:calendar, events: [])
-      expect(calendar.current_meeting).to be_nil
+      expect(calendar.current_event).to be_nil
     end
   end
 end
