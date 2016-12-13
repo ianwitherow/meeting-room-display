@@ -9,6 +9,7 @@
     </div>
     <div class="time-left"><%= @calendar.time_left %></div>
     <% if @other_available_calenders.present? %>
+      <div class="available-rooms">
         <% if @calendar.in_use? %>
             <p>These rooms are available right now:</p>
             <ul>
@@ -20,6 +21,7 @@
         <% else %>
             <p>No other room is available right now.</p>
         <% end %>
+      </div>
     <% end %>
   </div>
 
@@ -31,7 +33,7 @@
     <% end %>
 
     <% @calendar.events.inject(nil) do |previous_event, event| %>
-      <%= render partial: "events/event", locals: { event: event, previous_event: previous_event } %>
+      <%= render partial: "events/event", locals: { event: event, previous_event: previous_event, calendar: @calendar } %>
       <% event %>
     <% end %>
 

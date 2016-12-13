@@ -1,6 +1,7 @@
 module EventHelper
-  def event_classes(event)
+  def event_classes(calendar, event)
     classes = ["meeting"]
+    classes << "current" if calendar.current_event == event
     classes << "rejected" if event.rejected
     classes << "overlapping" if event.overlapping?
     classes.join(" ")

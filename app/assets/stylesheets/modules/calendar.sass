@@ -74,17 +74,25 @@
 
   .meeting
     position: absolute
-    background-color: rgba(0, 0, 0, 0.07)
+    background-color: rgba(12, 169, 227, 0.1)
     opacity: 0.8
     margin-left: 50px
     width: calc(100% - 50px)
-    border-left: 3px rgba(0, 0, 0, 0.7) solid
+    border-left: 3px rgba(12, 169, 227, 0.7) solid
     padding: 5px
     overflow: hidden
+    color: #0CA9E3
 
     &.rejected
-      background-color: rgba(255, 0, 0, 0.1)
+      background-color: rgba(0, 0, 0, 0.07)
+      border-color: rgba(0, 0, 0, 0.7)
       text-decoration: line-through
+      color: #6E6E70
+
+    &.current
+      background-color: rgba(255, 102, 0, 0.1)
+      border-color: #FF6600
+      color: #FF6600
 
     &.overlapping
       width: calc(50% - 25px)
