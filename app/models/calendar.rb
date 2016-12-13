@@ -6,7 +6,7 @@ class Calendar
   attr_writer :events
 
   def initialize(calendar_data, calendar_service = nil)
-    @location = calendar_data.try(:summary)
+    @location = parse_location(calendar_data.try(:summary))
     @calendar_id = calendar_data.try(:id)
     @calendar_service = calendar_service
   end
@@ -76,5 +76,11 @@ class Calendar
       event.all_day? ||
           Time.zone.now >= event.begin_time && Time.zone.now <= event.end_time
     end
+  end
+
+  private
+
+  def parse_location(location)
+    location.gsub(/\(.*\)/, "")
   end
 end
