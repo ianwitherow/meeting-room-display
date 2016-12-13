@@ -28,11 +28,8 @@ class Calendar
 
   def description
     if in_use?
-      attendees = current_event.attendees.to_sentence
-
-      "This room is used by #{attendees} " \
-        "until #{current_event.end_time.strftime("%H:%M")} " \
-        "(#{time_left})"
+      "This room is used by #{current_event.organizer} " \
+        "until #{current_event.end_time.strftime("%H:%M")}."
     else
       "This room is available"
     end
