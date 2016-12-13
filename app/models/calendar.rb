@@ -78,6 +78,7 @@ class Calendar
   private
 
   def parse_location(location)
-    location.gsub(/\(.*\)/, "")
+    return '' if location.blank?
+    location.gsub(/\s*\(.*\)/, "")
   end
 end

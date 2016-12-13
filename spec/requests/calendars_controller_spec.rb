@@ -11,7 +11,7 @@ describe CalendarsController, type: :request do
         get calendar_path("ultimaker.com_33313636373633363835@resource.calendar.google.com"), {}, env
 
         calendar = assigns(:calendar)
-        expect(calendar.location).to eq "Flexroom North (max 8)"
+        expect(calendar.location).to eq "Flexroom North"
         expect(calendar).to have(4).events
 
         event = calendar.events.first
@@ -19,10 +19,10 @@ describe CalendarsController, type: :request do
         expect(event.begin_time.to_i).to eq 1481103000
         expect(event.end_time.to_i).to eq 1481106600
         expect(event.attendees).to match_array ["Blanca Bolaños",
-                                                "b.timmermans@ultimaker.com",
-                                                "c.mcadam@ultimaker.com",
-                                                "l.lesiputty@ultimaker.com",
-                                                "s.tuijt@ultimaker.com"]
+                                                "B. Timmermans",
+                                                "C. Mcadam",
+                                                "L. Lesiputty",
+                                                "S. Tuijt"]
       end
     end
   end

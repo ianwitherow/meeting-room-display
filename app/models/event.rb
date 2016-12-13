@@ -70,6 +70,8 @@ class Event
   end
 
   def parse_attendee(attendee)
+    return '' if attendee.blank?
+
     name = attendee.display_name.presence || attendee.email
     name.gsub!("@ultimaker.com", "")
 

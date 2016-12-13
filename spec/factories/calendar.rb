@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :calendar do
-    location "Flexroom North (max 8)"
+    location "Flexroom North"
     events { build_list(:event, 1) }
 
     skip_create

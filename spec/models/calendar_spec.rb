@@ -5,11 +5,11 @@ describe Calendar do
         events = create_list(:event, 1,
                              begin_time: 4.minutes.ago,
                              end_time: 10.minutes.from_now,
-                             attendees: ["Jankees van Woezik", "Rowan Zajkowski", "Davy Cardinaal"])
+                             organizer: "Jankees van Woezik")
 
         calendar = create(:calendar, events: events)
 
-        expect(calendar.description).to eq "This room is used by Jankees van Woezik, Rowan Zajkowski and Davy Cardinaal until 09:10 (10 minutes left)"
+        expect(calendar.description).to eq "This room is used by Jankees van Woezik until 09:10."
       end
     end
 
