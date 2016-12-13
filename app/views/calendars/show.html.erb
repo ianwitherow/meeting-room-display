@@ -31,7 +31,7 @@
     <% end %>
 
     <% @calendar.events.inject(nil) do |previous_event, event| %>
-      <%= render partial: "events/event", locals: { event: event, previous_event: previous_event } %>
+      <%= render partial: "events/event", locals: { event: event, previous_event: previous_event, calendar: @calendar } %>
       <% event %>
     <% end %>
 
