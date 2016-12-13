@@ -6,7 +6,7 @@ class Calendar
   attr_writer :events
 
   def initialize(calendar_data, calendar_service = nil)
-    @location = calendar_data.try(:summary)
+    @location = parse_location(calendar_data.try(:summary))
     @calendar_id = calendar_data.try(:id)
     @calendar_service = calendar_service
   end
@@ -28,11 +28,8 @@ class Calendar
 
   def description
     if in_use?
-      attendees = current_event.attendees.to_sentence
-
-      "This room is used by #{attendees} " \
-        "until #{current_event.end_time.strftime("%H:%M")} " \
-        "(#{time_left})"
+      "This room is used by #{current_event.organizer} " \
+        "until #{current_event.end_time.strftime("%H:%M")}."
     else
       "This room is available"
     end
@@ -76,5 +73,11 @@ class Calendar
       event.all_day? ||
           Time.zone.now >= event.begin_time && Time.zone.now <= event.end_time
     end
+  end
+
+  private
+
+  def parse_location(location)
+    location.gsub(/\(.*\)/, "")
   end
 end

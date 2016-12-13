@@ -4,6 +4,7 @@ class Event
   attr_accessor :begin_time
   attr_accessor :end_time
   attr_accessor :attendees
+  attr_accessor :organizer
   attr_accessor :rejected
   attr_accessor :all_day
 
@@ -15,6 +16,7 @@ class Event
       @begin_time = parse_begin_time(json.start.date_time)
       @end_time = parse_end_time(json.end.date_time)
       @attendees = parse_attendees(json.attendees)
+      @organizer = parse_attendee(json.organizer)
       @rejected = parse_rejected(json.attendees)
     end
   end
@@ -63,8 +65,19 @@ class Event
     attendees.reject(&:resource).find_all do |attendee|
       attendee.response_status == "accepted"
     end.map do |attendee|
-      attendee.display_name.presence || attendee.email
+      parse_attendee(attendee)
     end
+  end
+
+  def parse_attendee(attendee)
+    name = attendee.display_name.presence || attendee.email
+    name.gsub!("@ultimaker.com", "")
+
+    if name =~ /\A\w\.\w+\z/
+      name = name.split(".").map(&:capitalize).join(". ")
+    end
+
+    name
   end
 
   def parse_rejected(attendees)
