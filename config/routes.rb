@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope "oauth" do
     get "authorize", to: "oauth#authorize"
     get "callback", to: "oauth#callback"
+    get "sign_out", to: "oauth#sign_out"
   end
 
   resources :calendars, constraints: { id: /[0-z\.]+/ }
