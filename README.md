@@ -20,7 +20,7 @@ We wanted to build a small app to prevent the interruption of meetings, you hear
 Q: The list does not show the calendars of meeting room X
 > A: We use a personal Google Account to access the data of the calendars, we ask Google for the calendars that our user can see. We only get the calendars our user has in the sidebar, so make sure all the meeting rooms are visible in the sidebar of [https://calendar.google.com](calendar.google.com). 
 
-> The credentials get stored in the Redis and you can sign out by visiting `oauth/sign_out`. The password for the Google Account can be found in LastPass.
+> The credentials get stored in the Redis and you can sign out by visiting `oauth/sign_out`.
 
 Q: How is this hosted?
 > A: We are currently hosting this project on Heroku, which is free (for our limited use). To run the application you need two environment variables: `BASIC_AUTH_USER_NAME` and `BASIC_AUTH_PASSWORD`.
