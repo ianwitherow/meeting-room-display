@@ -10,8 +10,8 @@ We wanted to build a small app to prevent the interruption of meetings, you hear
  
 ## What is this?
  
- This repository contains a small Rails application that can display the current occupation of a meeting room. 
- It's connected to the Google Calendar of Ultimaker and looks like this:
+ This repository contains a Rails application that can display the current occupation of a meeting room. 
+ It's connected to the Google Calendar and can be connected via OAuth in use it looks like this:
  
 ![The application in use](docs/photo.jpg)
 
