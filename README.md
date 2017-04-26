@@ -7,9 +7,6 @@ We wanted to build a small app to prevent the interruption of meetings, you hear
 
 * Did you book this room?
 * When are you leaving this room?
-
-The application can be seen on: 
-[um-meeting-room-display.herokuapp.com](https://um-meeting-room-display.herokuapp.com/).
  
 ## What is this?
  
@@ -23,12 +20,10 @@ The application can be seen on:
 Q: The list does not show the calendars of meeting room X
 > A: We use a personal Google Account to access the data of the calendars, we ask Google for the calendars that our user can see. We only get the calendar our user has in the sidebar, so make sure all the meeting rooms are visible in the sidebar of [https://calendar.google.com](calendar.google.com). 
 
-> Personal calendars will not be listed. The Google account we use is `meetingroom@ultimaker.com`.
-
-> The credentials get stored in the Redis and you can sign out by visiting https://um-meeting-room-display.herokuapp.com/oauth/sign_out. The password for the Google Account can be found in LastPass.
+> The credentials get stored in the Redis and you can sign out by visiting `oauth/sign_out`. The password for the Google Account can be found in LastPass.
 
 Q: How is this hosted?
-> A: We are currently hosting this project on Heroku, which is free (for our limited use). You can see the application if you go to [um-meeting-room-display.herokuapp.com](https://um-meeting-room-display.herokuapp.com/), the basic auth credentials are *ultimaker* / *ultimaker2011*. 
+> A: We are currently hosting this project on Heroku, which is free (for our limited use). To run the application you need two environment variables: `BASIC_AUTH_USER_NAME` and `BASIC_AUTH_PASSWORD`.
 
 Q: What technology is used?
 > * [Ruby 2.3.1](https://www.ruby-lang.org/) 
