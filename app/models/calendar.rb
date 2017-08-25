@@ -29,7 +29,7 @@ class Calendar
   def description
     if in_use?
       "This room is used by #{current_event.organizer} " \
-        "until #{current_event.end_time.strftime("%H:%M")}."
+        "until #{current_event.end_time.strftime("%l:%M %P")}."
     else
       "This room is available"
     end
