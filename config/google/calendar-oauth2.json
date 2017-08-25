@@ -1,11 +1,11 @@
 {
   "web": {
-    "client_id": "897566473997-1u4c3v4ndded0b8qggfeuucu1gefqcui.apps.googleusercontent.com",
+    "client_id": "654363591147-vtlr9e0v9n9448lc0smpqkj4mjctcloi.apps.googleusercontent.com",
     "project_id": "meeting-display",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://accounts.google.com/o/oauth2/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "fckV8zU3QQuGzsS9y3SD_U7s",
+    "client_secret": "Q0j662AY8iwmn6FTzVeevrbG",
     "redirect_uris": [
       "http://localhost:3000/oauth/callback"
     ],
