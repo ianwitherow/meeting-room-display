@@ -29,7 +29,7 @@
     <% 8.upto(18).each do |hour| %>
         <div class="line hour-<%= hour %>-full"></div>
         <div class="line hour-<%= hour %>-half"></div>
-        <div class="time time-<%= hour %>"><%= hour %>:00</div>
+		  <div class="time time-<%= hour %>"><%= hour > 12 ? hour - 12 : hour %>:00 <%= hour >= 12 ? 'PM' : 'AM' %></div>
     <% end %>
 
     <% @calendar.events.inject(nil) do |previous_event, event| %>
