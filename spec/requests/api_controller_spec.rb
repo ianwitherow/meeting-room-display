@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe ApiController, type: :request do
   def get_path(path)
-    get path, {}, {
+    get path, params: {}, headers: {
       "HTTP_AUTHORIZATION" => ActionController::HttpAuthentication::Basic.encode_credentials("ultimaker", "ultimaker2011")
     }
   end
