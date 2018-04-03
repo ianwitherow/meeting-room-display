@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :calendar do
     location "Flexroom North"
     events { build_list(:event, 1) }

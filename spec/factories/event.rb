@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :event do
     summary "Meeting Sales"
     begin_time { 1.minute.ago }

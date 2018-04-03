@@ -8,7 +8,7 @@ describe CalendarsController, type: :request do
 
     VCR.use_cassette("calendar_with_items") do |cassette|
       Timecop.freeze(cassette.originally_recorded_at || Time.now) do
-        get calendar_path("ultimaker.com_33313636373633363835@resource.calendar.google.com"), {}, env
+        get calendar_path("ultimaker.com_33313636373633363835@resource.calendar.google.com"), params: {}, headers: env
 
         calendar = assigns(:calendar)
         expect(calendar.location).to eq "Flexroom North"
