@@ -3,6 +3,8 @@
 We ([@jankeesvw](https://github.com/jankeesvw), [@davycardinaal](https://github.com/davycardinaal) and 
 [@rowanzajkowski](https://github.com/rowanzajkowski)) created this project as part of our research sprint in december 2016.
 
+The 3D models in `docs/3dmodels` are created by Martijn van Gils.
+
 We wanted to build a small app to prevent the interruption of meetings, you hear these questions a lot:
 
 * Did you book this room?
@@ -32,7 +34,7 @@ Q: What technology is used?
 > * [Google Auth Library for Ruby](https://github.com/google/google-auth-library-ruby)
 
 Q: What tablet did you use?
-> A: We bought the cheapest Android tablet we could find: [Lenovo Tab 3 7 Essential 8 GB at Coolblue (€79,00)](http://www.tabletcenter.nl/product/703462/category-193340/lenovo-tab-3-7-essential-8-gb.html)
+> A: We bought the cheapest Android tablet we could find: [Lenovo Tab 3 7 Essential 8 GB at Coolblue (€79,00)](http://www.tabletcenter.nl/product/703462/category-193340/lenovo-tab-3-7-essential-8-gb.html). There is a holder you can print which you can find in `docs/3dmodels`.
 
 Q: Can you make feature X?
 > A: We would love to make this application better, if you have any ideas please open an issue.
