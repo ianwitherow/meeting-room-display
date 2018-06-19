@@ -8,7 +8,7 @@
     "client_secret": "1okL-MppsLBgeDoTMGgrYvJu",
     "redirect_uris": [
       "http://localhost:3000/oauth/callback"
-    ],
+    ], 
     "javascript_origins": [
       "http://localhost:3000"
     ]
