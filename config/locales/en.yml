@@ -26,4 +26,4 @@ en:
       last_word_connector: " and "
   time:
     formats:
-      time_only: "%H:%M"
+      time_only: "%l:%M %P"
