@@ -20,3 +20,5 @@ config/google/config.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+.ds_store
