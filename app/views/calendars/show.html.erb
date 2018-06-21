@@ -1,7 +1,17 @@
+
 <div class="mod-meeting-display <%= @calendar.available? ? "available" : "in_use" %>">
   <div class="mod-status">
     <h1><%= @calendar.location %></h1>
     <p class="description"><%= @calendar.description %></p>
+    
+   
+      <% @calendar.events.inject(nil) do |previous, event| %>
+        <% if @calendar.current_event == event %>
+
+          <%= 'Welcome ' + event.welcome %> 
+          <% end %>
+    <% end %>
+
     <div class="circle">
       <div class="clock">
         <%= @calendar.available? ? "Available" : "In use" %>
@@ -26,6 +36,7 @@
   </div>
 
   <div class="mod-calendar">
+
     <% 8.upto(18).each do |hour| %>
         <div class="line hour-<%= hour %>-full"></div>
         <div class="line hour-<%= hour %>-half"></div>

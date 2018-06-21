@@ -7,6 +7,7 @@ class Event
   attr_accessor :organizer
   attr_accessor :rejected
   attr_accessor :all_day
+  attr_accessor :welcome
 
   def initialize(calendar, json)
     @calendar = calendar
@@ -18,6 +19,7 @@ class Event
       @attendees = parse_attendees(json.attendees)
       @organizer = parse_attendee(json.organizer)
       @rejected = parse_rejected(json.attendees)
+      @welcome = parse_welcome(json.summary)
     end
   end
 
@@ -28,7 +30,8 @@ class Event
       end_time: end_time,
       attendees: attendees,
       rejected: rejected,
-      all_day: all_day
+      all_day: all_day,
+      welcome: summary
     }
   end
 
@@ -87,4 +90,9 @@ class Event
 
     attendees.detect(&:resource).try(:response_status) != "accepted"
   end
+
+  def parse_welcome(summary)
+    return '' if summary.blank?
+    summary[/(?<=\[).+?(?=\])/]
+  end 
 end
