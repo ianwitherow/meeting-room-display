@@ -35,7 +35,7 @@ class Calendar
     end
   end
 
-  def time_left(suffix: " ")
+  def time_left(suffix: "")
     if in_use?
       if current_event.all_day?
         "this meeting takes all day"
