@@ -24,8 +24,8 @@
       </div>
     <% end %>
     <div class="buttons">
-      <button name="30mButton">Book Next 30 Mins</button>
-      <button name="1hrButton">Book Next Hour</button>
+      <button name="30mButton" type="button">Book Next 30 Mins</button>
+      <button name="1hrButton" type="button">Book Next Hour</button>
     </div>
   </div>
 
@@ -35,9 +35,9 @@
       <div class="line hour-<%= hour %>-half"></div>
       <div class="time time-<%= hour %>"><%= hour %>:00am</div>
     <% end %>
-    <div class="line hour-12-full"></div>
-    <div class="line hour-12-half"></div>
-    <div class="time time-12">12:00pm</div>
+      <div class="line hour-12-full"></div>
+      <div class="line hour-12-half"></div>
+      <div class="time time-12">12:00pm</div>
     <% 13.upto(18).each do |hour| %>
       <div class="line hour-<%= hour %>-full"></div>
       <div class="line hour-<%= hour %>-half"></div>
