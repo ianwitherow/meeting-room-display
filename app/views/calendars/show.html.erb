@@ -4,13 +4,29 @@
     <h1><%= @calendar.location %></h1>
     <p class="description"><%= @calendar.description %></p>
 
+
+    
+      
+
    <!-- Welcome message to next company that is indicated by brackets -->
       <% @calendar.events.inject(nil) do |previous, event| %>
-        <% if @calendar.current_event == event %>
+
+
+        <% if @calendar.current_event == event %> 
           <%= 'Welcome ' %>
           <%= event.welcome %>
+        <% end %>
+          <% if @calendar.next_event == event %>
+            <%= 'Welcome ' %>
+            <%= event.welcome %>
+            <%= ', Meeting is in' %>
+            <% if @calendar.time_left.to_i <= 15 %>
+               <%= @calendar.time_left %>
+            <% end %>
           <% end %>
     <% end %>
+
+    
 
     <div class="circle">
       <div class="clock">
