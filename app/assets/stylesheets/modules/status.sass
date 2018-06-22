@@ -19,15 +19,14 @@
 
   .circle
     width: $circle-size
-    margin: 30px auto 20px
+    margin: 50px auto 20px
 
   .clock
     margin: 10px auto
     display: table-cell
     width: $circle-size
     height: $circle-size
-    border: 3px solid white
-    border-radius: 50%
+    border: 8px solid white
     vertical-align: middle
     text-align: center
     font-size: 52px
@@ -51,3 +50,23 @@
 
     li
       margin-left: 16px
+
+  .buttons
+    display: flex
+    justify-content: space-around
+    vertical-align: middle
+    margin: 10px auto
+
+  button
+    font-size: 18px
+    font-weight: bold
+    padding: 12px
+    flex-basis: 250px
+    height: 75px
+    border-radius: 10px
+    margin: 10px
+    background-color: ghostwhite
+
+  button:active
+    border: none
+    background-color: #CFD8DC
