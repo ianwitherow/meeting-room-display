@@ -26,6 +26,10 @@ class Calendar
     calendar_json
   end
 
+  def add_event(calendar_id, event)
+    @cal_result = @calendar_service.insert_event(calendar_id, event)
+  end
+
   def description
     if in_use?
       "This room is used by #{current_event.organizer} " \

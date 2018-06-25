@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :calendars, constraints: { id: /[0-z\.]+/ }
 
+  get "calendars/newevent/:id", to: "calendars#newevent", as: "addnewevent", constraints: { id: /[0-z\.]+/ }
+
   scope "api" do
     constraints format: :json do
       get "calendars", to: "api#calendars", as: :calendars_api
