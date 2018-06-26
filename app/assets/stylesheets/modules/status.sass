@@ -1,4 +1,6 @@
 .mod-status
+  display: flex
+  flex-direction: column
   padding: 20px
   min-height: 100vh
 
@@ -53,16 +55,18 @@
 
   .buttons
     display: flex
+    flex-direction: column
+    align-items: center
     justify-content: space-around
     vertical-align: middle
-    margin: 10px auto
+    margin: auto
 
   button
     font-size: 18px
     font-weight: bold
     padding: 12px
-    flex-basis: 250px
     height: 75px
+    width: 300px
     border-radius: 10px
     margin: 10px
     background-color: ghostwhite
