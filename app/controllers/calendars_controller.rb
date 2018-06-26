@@ -8,7 +8,7 @@ class CalendarsController < ApplicationController
     google_auth = GoogleCalendar.new(request: request)
     @calendar = google_auth.calendar_for_today(params[:id])
     @other_available_calenders = google_auth.available_calendars if @calendar.in_use?
-   
+
   end
 
   def newevent
@@ -20,11 +20,11 @@ class CalendarsController < ApplicationController
       'location': '212 S. 14th Street, Baton Rouge, LA',
       'description': 'TSE impromptu meeting.',
       'start': {
-        'date_time': '2018-06-25T08:00:00',
+        'date_time': DateTime.now,
         'time_zone': 'America/Chicago',
       },
       'end': {
-        'date_time': '2018-06-25T09:00:00',
+        'date_time': DateTime.now + (1/24.0),
         'time_zone': 'America/Chicago',
       },
       'attendees': [
@@ -34,5 +34,5 @@ class CalendarsController < ApplicationController
 
      @calendar.add_event(params[:id],event)
      redirect_to calendars_path
-	end	
+	end
 end
