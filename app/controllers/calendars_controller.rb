@@ -33,6 +33,6 @@ class CalendarsController < ApplicationController
     })
 
      @calendar.add_event(params[:id],event)
-     redirect_to calendars_path
+     redirect_to calendar_path
 	end
 end
