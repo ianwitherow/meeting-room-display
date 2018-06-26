@@ -4,9 +4,6 @@
     <h1><%= @calendar.location %></h1>
     <p class="description"><%= @calendar.description %></p>
 
-
-
-
    <!-- Welcome message to next company that is indicated by brackets -->
       <% @calendar.events.inject(nil) do |previous, event| %>
         <% if @calendar.current_event == event %>
@@ -20,8 +17,6 @@
             <%= @calendar.time_left %>
           <% end %>
     <% end %>
-
-
 
     <div class="circle">
       <div class="clock">
@@ -44,10 +39,13 @@
         <% end %>
       </div>
     <% end %>
-    <div class="buttons">
-      <%= link_to '<button name="1hrButton" type="button">Book Next Hour</button>'.html_safe, addnewevent_path(@calendar.calendar_id)%>
-      <%= link_to '<button name="30mButton" type="button">Book Next 30 Mins</button>'.html_safe, addnewevent2_path(@calendar.calendar_id)%>
-    </div>
+
+    <% if @calendar.available? %>
+      <div class="buttons">
+        <%= link_to '<button name="1hrButton" type="button">Book Next Hour</button>'.html_safe, addnewevent_path(@calendar.calendar_id)%>
+        <%= link_to '<button name="30mButton" type="button">Book Next 30 Mins</button>'.html_safe, addnewevent2_path(@calendar.calendar_id)%>
+      </div>
+    <% end %>
   </div>
 
   <div class="mod-calendar">
