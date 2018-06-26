@@ -35,4 +35,29 @@ class CalendarsController < ApplicationController
      @calendar.add_event(params[:id],event)
      redirect_to calendar_path
 	end
+
+  def newevent2
+     google_auth = GoogleCalendar.new(request: request)
+     @calendar = google_auth.calendar_for_today(params[:id])
+
+     event = Google::Apis::CalendarV3::Event.new({
+      'summary': 'Room Reserved 2',
+      'location': '212 S. 14th Street, Baton Rouge, LA',
+      'description': 'TSE impromptu meeting.',
+      'start': {
+        'date_time': DateTime.now,
+        'time_zone': 'America/Chicago',
+      },
+      'end': {
+        'date_time': DateTime.now + (30/1440.0),
+        'time_zone': 'America/Chicago',
+      },
+      'attendees': [
+        {'email': params[:id]},
+      ],
+    })
+
+     @calendar.add_event(params[:id],event)
+     redirect_to calendar_path
+  end
 end
