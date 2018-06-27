@@ -11,7 +11,7 @@ class CalendarsController < ApplicationController
 
   end
 
-  def newevent
+  def bookNextHour
   	 google_auth = GoogleCalendar.new(request: request)
   	 @calendar = google_auth.calendar_for_today(params[:id])
 
@@ -36,7 +36,7 @@ class CalendarsController < ApplicationController
      redirect_to calendar_path
 	end
 
-  def newevent2
+  def bookNext30Minutes
      google_auth = GoogleCalendar.new(request: request)
      @calendar = google_auth.calendar_for_today(params[:id])
 
@@ -53,11 +53,12 @@ class CalendarsController < ApplicationController
         'time_zone': 'America/Chicago',
       },
       'attendees': [
-        {'email': params[:id]},
+        {'email': params[:id], 'responseStatus': 'true'},
+        {'email': 'conferenceroom@threesixtyeight.com', 'responseStatus': 'true'},
       ],
     })
 
-     @calendar.add_event(params[:id],event)
+     @calendar.add_event(params[:id],event)    
      redirect_to calendar_path
   end
 end
