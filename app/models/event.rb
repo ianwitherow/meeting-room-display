@@ -97,10 +97,6 @@ class Event
   def parse_rejected(attendees)
     return false if attendees.blank? 
 
-    puts '*' * 500
-    puts attendees.inspect
-    puts '*' * 500
-
     attendees.detect(&:resource).try(:response_status) != "accepted" && 
     attendees.detect(&:resource).try(:response_status) != "needsAction" 
   end
