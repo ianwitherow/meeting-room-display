@@ -27,9 +27,6 @@ class CalendarsController < ApplicationController
         'date_time': DateTime.now + (1/24.0),
         'time_zone': 'America/Chicago',
       },
-      'attendees': [
-        {'email': params[:id]},
-      ],
     })
 
      @calendar.add_event(params[:id],event)
@@ -52,10 +49,6 @@ class CalendarsController < ApplicationController
         'date_time': DateTime.now + (30/1440.0),
         'time_zone': 'America/Chicago',
       },
-      'attendees': [
-        {'email': params[:id], 'responseStatus': 'true'},
-        {'email': 'conferenceroom@threesixtyeight.com', 'responseStatus': 'true'},
-      ],
     })
 
      @calendar.add_event(params[:id],event)    
