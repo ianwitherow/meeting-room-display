@@ -42,11 +42,16 @@
 
       <div class="buttons">
         <% if @calendar.available? %>
-          <%= link_to '<button name="1hrButton" type="button">Book Next Hour</button>'.html_safe, bookHour_path(@calendar.calendar_id)%>
-          <%= link_to '<button name="30mButton" type="button">Book Next 30 Mins</button>'.html_safe, book30_path(@calendar.calendar_id)%>
-        <% else %>
-          <%= link_to '<button name="1hrButton" type="button" disabled>Book Next Hour</button>'.html_safe, bookHour_path(@calendar.calendar_id)%>
-          <%= link_to '<button name="30mButton" type="button" disabled>Book Next 30 Mins</button>'.html_safe, book30_path(@calendar.calendar_id)%>
+          <% if ((@calendar.next_event.begin_time - DateTime.now) * 24 * 60).to_i  >= 60 %>
+            <%= link_to '<button name="1hrButton" type="button">Book Next Hour</button>'.html_safe, bookHour_path(@calendar.calendar_id)%>
+          <% else %>
+            <%= link_to '<button name="1hrButton" type="button" disabled>Book Next Hour</button>'.html_safe, bookHour_path(@calendar.calendar_id)%>
+          <% end %>
+          <% if ((@calendar.next_event.begin_time - DateTime.now) * 24 * 60).to_i >= 30 %>
+            <%= link_to '<button name="30mButton" type="button">Book Next 30 Mins</button>'.html_safe, book30_path(@calendar.calendar_id)%>
+          <% else %>
+            <%= link_to '<button name="30mButton" type="button" disabled>Book Next 30 Mins</button>'.html_safe, book30_path(@calendar.calendar_id)%>
+          <% end %>
         <% end %>
       </div>
   </div>
