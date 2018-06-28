@@ -95,21 +95,21 @@ class Event
   end
 
   def parse_rejected(attendees)
-    return false if attendees.blank? 
+    return false if attendees.blank?
 
-    attendees.detect(&:resource).try(:response_status) != "accepted" 
+    attendees.detect(&:resource).try(:response_status) != "accepted"
   end
 
   def parse_welcome(summary)
     return '' if summary.blank?
-    summary[/(?<=\[).+?(?=\])/] 
-  end 
+    summary[/(?<=\[).+?(?=\])/]
+  end
 
   def parse_check_event(summary)
      if summary.include?("[") == false
       return ''
   else
-    return 'Is currently in a meeting. '
+    return 'is currently in a meeting. '
     end
   end
 
@@ -122,10 +122,10 @@ class Event
   end
 
   def parse_meeting_event(summary)
-     if summary.include?("[") == false
+    if summary.include?("[") == false
       return 'Next meeting in'
-  else
-    return ', meeting is in'
+    else
+      return ', meeting is in'
     end
   end
 end
