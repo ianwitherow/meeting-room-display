@@ -4,13 +4,9 @@
     <h1><%= @calendar.location %></h1>
     <p class="description"><%= @calendar.description %></p>
 
-
-    
-      
-      
    <!-- Welcome message to next company that is indicated by brackets -->
       <% @calendar.events.inject(nil) do |previous, event| %>
-        <% if @calendar.current_event == event %>   
+        <% if @calendar.current_event == event %>
           <%= event.welcome %>
           <%= event.check_event %>
         <% end %>
@@ -18,11 +14,9 @@
           <%= event.next_event %>
             <%= event.welcome %>
             <%= event.meeting_event %>
-            <%= @calendar.time_left %>        
+            <%= @calendar.time_left %>
           <% end %>
     <% end %>
-
-    
 
     <div class="circle">
       <div class="clock">
@@ -45,10 +39,16 @@
         <% end %>
       </div>
     <% end %>
-    <div class="buttons">
-      <button name="30mButton" type="button">Book Next 30 Mins</button>
-      <button name="1hrButton" type="button">Book Next Hour</button>
-    </div>
+
+      <div class="buttons">
+        <% if @calendar.available? %>
+          <%= link_to '<button name="1hrButton" type="button">Book Next Hour</button>'.html_safe, bookHour_path(@calendar.calendar_id)%>
+          <%= link_to '<button name="30mButton" type="button">Book Next 30 Mins</button>'.html_safe, book30_path(@calendar.calendar_id)%>
+        <% else %>
+          <%= link_to '<button name="1hrButton" type="button" disabled>Book Next Hour</button>'.html_safe, bookHour_path(@calendar.calendar_id)%>
+          <%= link_to '<button name="30mButton" type="button" disabled>Book Next 30 Mins</button>'.html_safe, book30_path(@calendar.calendar_id)%>
+        <% end %>
+      </div>
   </div>
 
   <div class="mod-calendar">
