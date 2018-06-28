@@ -16,7 +16,7 @@ class CalendarsController < ApplicationController
   	 @calendar = google_auth.calendar_for_today(params[:id])
 
   	 event = Google::Apis::CalendarV3::Event.new({
-      'summary': 'Room Reserved 2',
+      'summary': 'Impromptu 1-hour Meeting',
       'location': '212 S. 14th Street, Baton Rouge, LA',
       'description': 'TSE impromptu meeting.',
       'start': {
@@ -38,7 +38,7 @@ class CalendarsController < ApplicationController
      @calendar = google_auth.calendar_for_today(params[:id])
 
      event = Google::Apis::CalendarV3::Event.new({
-      'summary': 'Room Reserved 2',
+      'summary': 'Impromptu 30-minute Meeting',
       'location': '212 S. 14th Street, Baton Rouge, LA',
       'description': 'TSE impromptu meeting.',
       'start': {
@@ -51,7 +51,7 @@ class CalendarsController < ApplicationController
       },
     })
 
-     @calendar.add_event(params[:id],event)    
+     @calendar.add_event(params[:id],event)
      redirect_to calendar_path
   end
 end
