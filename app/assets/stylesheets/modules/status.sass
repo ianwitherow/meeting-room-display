@@ -35,13 +35,12 @@
     font-family: $font-family-header
 
   .in_use &
-    background-color: red
     color: white
-    background-image: radial-gradient(50% 50%, #FF9F00 50%, $orange 100%)
+    background-color: $orange
 
   .available &
     color: white
-    background-image: radial-gradient(50% 50%, #BBEE46 50%, $green 100%)
+    background-color: $green
 
   .available-rooms
     p
@@ -58,16 +57,18 @@
     flex-direction: column
     align-items: center
     justify-content: space-around
-    height: 200px
+    width: 375px
+    height: 160px
+    margin: 1em auto
 
   button
     font-size: 18px
     font-weight: bold
     padding: 12px
     flex-basis: 250px
-    height: 75px
-    width: 300px
-    border-radius: 10px
+    height: 50px
+    width: 250px
+    border-radius: 5px
     margin: 0
     background-color: ghostwhite
 
