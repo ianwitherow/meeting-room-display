@@ -123,9 +123,9 @@ class Event
 
   def parse_meeting_event(summary)
     if summary.include?("[") == false
-      return 'Next meeting in'
+      return 'Next opening is at'
     else
-      return ', meeting is in'
+      return ', next opening is at'
     end
   end
 end
