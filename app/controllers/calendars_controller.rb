@@ -53,5 +53,6 @@ class CalendarsController < ApplicationController
 
      @calendar.add_event(params[:id],event)
      redirect_to calendar_path
+     flash[:success] = "Great! Your post has been created!"
   end
 end

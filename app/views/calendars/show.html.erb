@@ -10,7 +10,7 @@
           <%= event.welcome %>
           <%= event.check_event %>
         <% end %>
-          <% if @calendar.next_event == event && @calendar.time_left.to_i <= 15 %>
+          <% if @calendar.next_event == event && ((@calendar.next_event.begin_time - DateTime.now) * 24 * 60).to_i <= 15 %>
           <%= event.next_event %>
             <%= event.welcome %>
             <%= event.meeting_event %>
