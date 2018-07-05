@@ -62,6 +62,13 @@ class Calendar
         .detect { |event| event.begin_time > Time.zone.now }
   end
 
+  def after_event(next_event)
+    events
+        .reject(&:rejected)
+        .sort_by(&:begin_time)
+        .detect { |event| event.begin_time > next_event.begin_time  }
+  end
+
   def available?
     current_event.nil?
   end
